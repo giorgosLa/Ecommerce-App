@@ -27,13 +27,13 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/payments", paymentsRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
-if (process.env.NODE_ENV === "production")
+if (process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
-app.get("*", (req, res) => {
+  app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 });
-
+}
 app.listen(PORT, () => {
   console.log(`Server is running on Port http://localhost:${PORT}`);
   connectDB();
